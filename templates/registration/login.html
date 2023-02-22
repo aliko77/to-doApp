@@ -1,0 +1,96 @@
+{% extends 'base.html' %} {% block content %}
+<section
+  id="index"
+  class="min-h-screen bg-gradient-to-b from-rose-500 to-white"
+>
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto">
+    <span
+      href="{% url 'home' %}"
+      class="flex items-center mb-6 text-2xl font-semibold text-white cursor-pointer"
+    >
+      <img
+        class="w-8 h-8 mr-2"
+        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+        alt="logo"
+      />
+      <h1 class="text-2xl font-medium font-mono tracking-wider">
+        Too&middot;Doo
+      </h1>
+    </span>
+    <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-1">
+      <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="p-4 space-y-4">
+          <h1
+            class="text-xl font-semibold tracking-tighter leading-tight text-gray-900"
+          >
+            Hesabınıza giriş yapın
+          </h1>
+          <div>
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >E-mail</label
+            >
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rose-400 focus:border-rose-400 block w-full p-2.5"
+              placeholder="name@example.com"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block mb-2 textsm font-medium text-gray-900"
+              >Şifre</label
+            >
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="..."
+              required
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-rose-400 focus:border-rose-400 block w-full p-2.5"
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  id="remember"
+                  aria-describedby="remember"
+                  type="checkbox"
+                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-rose-300 text-rose-500"
+                />
+              </div>
+              <div class="ml-3 text-sm">
+                <label for="remember" class="text-gray-500">Beni hatırla</label>
+              </div>
+            </div>
+            <a
+              href="{% url 'password_reset' %}"
+              class="text-sm font-medium text-rose-600 hover:underline"
+              >Şifreni mi unuttun?</a
+            >
+          </div>
+          <button
+            type="submit"
+            class="w-full text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          >
+            Giriş Yap
+          </button>
+          <p class="text-sm text-rose-500">
+            Bir hesabın yok mu?
+            <a href="#" class="font-medium text-rose-600 hover:underline"
+              >Kayıt ol</a
+            >
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+<section
+  id="index"
+  class="min-h-screen bg-gradient-to-b from-rose-500 to-white"
+>
+  {% if user.is_authenticated %}
+  <div>hoşgeldiniz {{user.get_username}}</div>
+  {% endif %}
+</section>
+{% endblock content %}
