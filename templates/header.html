@@ -1,3 +1,27 @@
-<header>
-    Header
+<header class="sticky top-0 w-full bg-rose-500 text-white p-3 shadow-md">
+  <div class="flex items-center align-middle justify-between">
+    <div>
+      <a href="{% url 'index' %}">
+        <span class="text-xl sm:text-2xl font-medium font-mono tracking-wider">Too&middot;Doo</span>
+      </a>
+    </div>
+    <div class="flex justify-around">
+      <div class="cursor-pointer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
 </header>
