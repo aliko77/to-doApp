@@ -97,7 +97,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'tr-TR'
 
 TIME_ZONE = 'UTC'
 
@@ -128,7 +128,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-# NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
