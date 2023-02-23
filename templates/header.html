@@ -7,11 +7,11 @@
         >
       </a>
     </div>
-    <div class="flex justify-around items-center space-x-8">
+    <div class="flex justify-around items-center space-x-4">
       {% if user.is_authenticated %}
       <div>
         {% comment %} Logout Button {% endcomment %}
-        <a href="{% url 'logout' %}">
+        <a href="{% url 'logout' %}" title="Çıkış yap">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
