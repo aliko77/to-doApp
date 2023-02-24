@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <section
-  id="index"
+  id="login"
   class="min-h-screen bg-gradient-to-b from-rose-500 to-white"
 >
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto">
@@ -24,7 +24,7 @@
     {% endif %}
 
     <div
-      class="w-full max-w-md bg-white bg-opacity-60 rounded-lg shadow-lg p-1"
+      class="w-full max-w-md bg-white bg-opacity-80 rounded-lg shadow-lg p-1"
     >
       <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
