@@ -6,4 +6,4 @@ from django.views import View
 
 class index(View):
     def get(self, request):
-        return render(request=request, template_name='main/home.html')
+        return render(request=request, template_name='main/index.html')
