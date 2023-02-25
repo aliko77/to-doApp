@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'apps.main',
-    'apps.register'
+    'apps.customAuth'
 ]
 
 MIDDLEWARE = [
@@ -94,6 +94,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+# Auth backend
+AUTHENTICATION_BACKENDS = [
+    'apps.customAuth.backends.AuthBackend.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend'
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

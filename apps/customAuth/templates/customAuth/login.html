@@ -11,22 +11,12 @@
         Too&middot;Doo
       </h1>
     </div>
-    {% if form.errors %}
+    {% if messages %}
     <div
-      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+      class="bg-white rounded text-teal-800 px-4 py-3 shadow-md m-3 w-full max-w-md"
       role="alert"
     >
-      <strong class="font-bold">Hata !</strong>
-      <span class="block sm:inline">
-        Kullanıcı adı veya şifre yanlış. Lütfen tekrar deneyiniz.
-      </span>
-    </div>
-    {% endif %} {% if messages %}
-    <div
-      class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
-      role="alert"
-    >
-      <div class="flex">
+      <div class="flex items-center">
         {% for message in messages %}
         <div class="py-1">
           <svg
@@ -40,7 +30,7 @@
           </svg>
         </div>
         <div>
-          <p class="font-bold">{{ message }}</p>
+          <p class="font-semibold">{{ message }}</p>
         </div>
         {% endfor %}
       </div>
@@ -61,16 +51,16 @@
           </h1>
           <div>
             <label
-              for="username"
+              for="email"
               class="block mb-2 text-sm font-medium text-gray-900"
-              >Kullanıcı Adı</label
+              >E-mail</label
             >
             <input
-              type="username"
-              name="username"
-              id="username"
+              type="email"
+              name="email"
+              id="email"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rose-400 focus:border-rose-400 block w-full p-2.5"
-              placeholder="username"
+              placeholder="email"
               required
             />
           </div>
@@ -104,7 +94,7 @@
               </div>
             </div>
             <a
-              href="{% url 'password_reset' %}"
+              href="#"
               class="text-sm font-medium text-rose-600 hover:underline"
               >Şifreni mi unuttun?</a
             >
