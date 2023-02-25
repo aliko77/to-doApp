@@ -43,9 +43,7 @@ class Register(View):
             return redirect('home')
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
+            form.save()
             messages.success(
                 request=request, message='Başarıyla kayıt oldunuz.')
             return redirect('login')
