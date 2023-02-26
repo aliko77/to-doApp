@@ -19,7 +19,7 @@ class Login(View):
             )
             if user is not None:
                 login(request=request, user=user)
-                return redirect('home')
+                return redirect('tasks.today')
             else:
                 messages.error(
                     request=request, message='Email veya şifre yanlış.')

@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'apps.main',
-    'apps.customAuth'
+    'apps.customAuth',
+    'apps.tasks'
 ]
 
 MIDDLEWARE = [

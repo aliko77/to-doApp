@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
 <section
     id="index"
-    class="flex flex-col min-h-screen bg-gradient-to-b from-rose-500 to-white items-center"
+    class="flex flex-col bg-gradient-to-b from-rose-500 to-white items-center"
 >
     <div
         class="bg-white bg-opacity-80 rounded my-40 mx-4 px-4 py-2 pb-4 space-y-8"
@@ -22,7 +22,7 @@
         </div>
         <div class="flex flex-col items-center">
             <a
-                href="{% url 'login' %}"
+                href="{% if request.user.is_authenticated %} {% url 'tasks.today' %} {% else %} {% url 'login' %} {% endif %}"
                 class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 rounded w-4/6 text-center"
                 type="button"
             >
