@@ -1,11 +1,13 @@
 "use strict";
 
-const sidebarButton = document.getElementById('sidebar-button');
+const sidebarButton = document
+    .querySelectorAll("#sidebar-button")
+    .forEach(function ($triggerEl) {
+        const buttonTarget = $triggerEl.getAttribute("aria-controls");
+        const targetEl = document.getElementById(buttonTarget);
+        if (targetEl) {
+            $triggerEl.addEventListener("click", function () {
 
-sidebarButton.addEventListener("click", () => {
-    const buttonTarget = sidebarButton.getAttribute('aria-controls');
-    const sidebar = document.getElementById(buttonTarget);
-    if (sidebar) {
-        sidebar.classList.toggle('-translate-x-full')
-    }
-});
+            });
+        }
+    });
