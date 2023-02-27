@@ -1,8 +1,10 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
 <section id="today" class="bg-black">
     <button
-        data-display-toggle="default-sidebar"
-        aria-controls="default-sidebar"
+        id="sidebar-button"
+        aria-controls="sidebar"
         type="button"
         class="md:hidden inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg"
     >
@@ -23,7 +25,7 @@
     </button>
 
     <aside
-        id="default-sidebar"
+        id="sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
     >
@@ -198,4 +200,5 @@
         </div>
     </aside>
 </section>
+<script src="{% static 'tasks/js/tasks.js' %}"></script>
 {% endblock content %}
