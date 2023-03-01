@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
-{% block content %} {% load static %}
-{% block css_files %}
-<link
-    rel="stylesheet"
-    href="{% static 'tasks/css/style.css' %}" 
-/>
-{% endblock css_files %}
+{% block content %}
+{% load static %}
+{% block ext_css_files %}
+<link rel="stylesheet" href="{% static 'tasks/css/style.css' %}" />
+{% endblock ext_css_files %}
 <section id="today" class="bg-gray-100">
   <aside
     id="sidebar"
@@ -137,5 +135,7 @@
     </div>
   </div>
 </section>
+{% block ext_js_files %}
 <script src="{% static 'tasks/js/tasks.js' %}"></script>
+{% endblock ext_js_files %}
 {% endblock content %}
