@@ -2,3 +2,7 @@ aside.tasks-sidebar a.active {
   background-color: rgb(229 231 235) !important;
   font-weight: 600;
 }
+
+button#mission-add-button:disabled {
+  color: rgb(156 163 175);
+}
