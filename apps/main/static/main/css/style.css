@@ -1,6 +1,5 @@
 :root {
-    --sm-header-height: 52px;
-    --header-height: 56px;
+    --header-height: 48px;
 }
 
 html,
@@ -25,11 +24,11 @@ aside#sidebar {
 @media (max-width: 640px) {
 
     main#main {
-        height: calc(100vh - var(--sm-header-height));
+        height: calc(100vh - var(--header-height));
     }
 
     aside#sidebar {
-        margin-top: var(--sm-header-height);
+        margin-top: var(--header-height);
     }
 }
 
