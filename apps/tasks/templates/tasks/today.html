@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %} {% load static %} {% block ext_css_files %} {% load tasks_tags %}
+{% extends 'base.html' %}{% block content %} {% load static %} {% block ext_css_files %} {% load tasks_tags %}
 <link rel="stylesheet" href="{% static 'tasks/css/style.css' %}" />
 {% endblock ext_css_files %}
 <section id="today" class="bg-gray-100">
@@ -88,11 +88,14 @@
             <div
               class="aux_div px-4 py-2 overflow-hidden relative flex-shrink-0 flex items-center bg-slate-200"
             >
-              <div class="flex flex-row flex-nowrap overflow-x-auto space-x-4">
+              <div
+                class="flex flex-row flex-nowrap overflow-x-auto space-x-4 p-1"
+              >
                 <div
                   role="button"
                   title="Son tarih ekle"
                   data-dropdown-toggle="aux-date-dropdown"
+                  class="flex flex-1 items-center text-xs bg-white py-0.5 px-2 rounded space-x-1"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -108,42 +111,7 @@
                       d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
                     />
                   </svg>
-                </div>
-                <div
-                  role="button"
-                  title="Anımsatıcı ekle"
-                  data-dropdown-toggle="aux-reminder-dropdown"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5 stroke-stone-700"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                    />
-                  </svg>
-                </div>
-                <div role="button" title="Tekrarla">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5 stroke-stone-700"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"
-                    />
-                  </svg>
+                  <span class="aux-value hidden"></span>
                 </div>
               </div>
               <div class="relative ml-auto">
@@ -179,7 +147,9 @@
   >
     <li>
       <a
-        href="#"
+        role="button"
+        id="aux-date-button"
+        data-value="{% addDays 0 'd-m-Y' %}"
         class="flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
       >
         <svg
@@ -204,7 +174,9 @@
     </li>
     <li>
       <a
-        href="#"
+        role="button"
+        id="aux-date-button"
+        data-value="{% addDays 1 'd-m-Y' %}"
         class="flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
       >
         <svg
@@ -229,7 +201,9 @@
     </li>
     <li>
       <a
-        href="#"
+        role="button"
+        id="aux-date-button"
+        data-value="{% addDays 7 'd-m-Y' %}"
         class="flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
       >
         <svg
@@ -255,138 +229,40 @@
   </ul>
   <div class="py-2 text-sm">
     <a
-      href="#"
+      role="button"
       class="flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-4 h-4"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
+      <div class="relative w-full">
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5 text-gray-500 dark:text-gray-400"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+        <input
+          datepicker
+          datepicker-autohide
+          minDate="1923"
+          type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-gray-300 focus:ring-0"
+          placeholder="Tarih seçin"
         />
-      </svg>
-      <span>Tarih seçin</span>
+      </div>
     </a>
   </div>
 </div>
-<div
-  id="aux-reminder-dropdown"
-  class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-52 dark:bg-gray-700"
->
-  <div class="py-2 text-center text-sm">
-    <p>Hatırlatıcı</p>
-  </div>
-  <ul
-    class="py-2 text-sm text-gray-700 dark:text-gray-200"
-    aria-labelledby="dropdownAuxReminder"
-  >
-    <li>
-      <a
-        href="#"
-        class="flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-4 h-4"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-          />
-        </svg>
-        <div class="flex flex-1 justify-between">
-          <span>Bugün içinde</span>
-          <span class="text-sm text-gray-500">{% now "D" %}</span>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a
-        href="#"
-        class="flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-4 h-4"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-          />
-        </svg>
-        <div class="flex flex-1 justify-between">
-          <span>Yarın</span>
-          <span class="text-sm text-gray-500">{% addDays 1 "D" %}</span>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a
-        href="#"
-        class="flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-4 h-4"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-          />
-        </svg>
-        <div class="flex flex-1 justify-between">
-          <span>Gelecek hafta</span>
-          <span class="text-sm text-gray-500">{% addDays 7 "D" %}</span>
-        </div>
-      </a>
-    </li>
-  </ul>
-  <div class="py-2 text-sm">
-    <a
-      href="#"
-      class="flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-4 h-4"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
-        />
-      </svg>
-      <span>Tarih ve saat seçin</span>
-    </a>
-  </div>
-</div>
-
 {% block ext_js_files %}
 <script src="{% static 'tasks/js/tasks.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/datepicker.min.js"></script>
 {% endblock ext_js_files %} {% endblock content %}
