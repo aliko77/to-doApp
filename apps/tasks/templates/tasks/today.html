@@ -223,7 +223,7 @@
         </svg>
         <div class="flex flex-1 justify-between">
           <span>Yarın</span>
-          <span class="text-sm text-gray-500">{% addDays 1 '%a' %}</span>
+          <span class="text-sm text-gray-500">{% addDays 1 'D' %}</span>
         </div>
       </a>
     </li>
@@ -247,8 +247,8 @@
           />
         </svg>
         <div class="flex flex-1 justify-between">
-            <span>Gelecek hafta</span>
-            <span class="text-sm text-gray-500">{% addDays 7 '%a' %}</span>
+          <span>Gelecek hafta</span>
+          <span class="text-sm text-gray-500">{% addDays 7 'D' %}</span>
         </div>
       </a>
     </li>
@@ -306,7 +306,10 @@
             d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
           />
         </svg>
-        <span>Bugün içinde</span>
+        <div class="flex flex-1 justify-between">
+          <span>Bugün içinde</span>
+          <span class="text-sm text-gray-500">{% now "D" %}</span>
+        </div>
       </a>
     </li>
     <li>
@@ -328,7 +331,10 @@
             d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
           />
         </svg>
-        <span>Yarın</span>
+        <div class="flex flex-1 justify-between">
+          <span>Yarın</span>
+          <span class="text-sm text-gray-500">{% addDays 1 "D" %}</span>
+        </div>
       </a>
     </li>
     <li>
@@ -350,7 +356,10 @@
             d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
           />
         </svg>
-        <span>Gelecek hafta</span>
+        <div class="flex flex-1 justify-between">
+          <span>Gelecek hafta</span>
+          <span class="text-sm text-gray-500">{% addDays 7 "D" %}</span>
+        </div>
       </a>
     </li>
   </ul>

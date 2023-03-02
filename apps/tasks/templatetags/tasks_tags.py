@@ -1,11 +1,15 @@
 from django import template
-import datetime
-import locale
+from datetime import datetime, timedelta, date
+from time import timezone
+from django.conf import settings
+from django.template.defaultfilters import date
+from django.utils import timezone
 
 register = template.Library()
 
+
 @register.simple_tag
 def addDays(days, format):
-   print(locale.getlocale(locale.LC_TIME))
-   newDate = datetime.date.today() + datetime.timedelta(days=days)
-   return newDate.strftime(format)
+    tzinfo = timezone.get_current_timezone() if settings.USE_TZ else None
+    formatted = date(datetime.now(tz=tzinfo) + timedelta(days=days), format)
+    return formatted
