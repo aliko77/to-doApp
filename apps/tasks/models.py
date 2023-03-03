@@ -1,11 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 
 class UserTasks(models.Model):
-    user_id = models.IntegerField()
-    header = models.CharField(max_length=255)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=255)
     description = models.TextField()
     state = models.CharField(max_length=32)
     expiration_date = models.DateField(null=True)
@@ -17,4 +19,9 @@ class UserTasks(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "Görev: " + self.header
+        return "Görev: " + self.title
+
+    class Meta:
+        ordering = ["created_at"]
+        verbose_name = "Hedef"
+        verbose_name_plural = "Hedefler"

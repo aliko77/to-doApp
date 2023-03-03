@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import Today
 
 urlpatterns = [
-    path('today/', views.Today.as_view(), name='tasks.today')
+    path('today/', Today.as_view(), name='tasks.today')
 ]
