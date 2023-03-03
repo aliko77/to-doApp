@@ -39,6 +39,7 @@ removeDateButton.addEventListener("click", (event) => {
   auxDateSpan.classList.add("hidden");
 });
 
-var missionSubmitButton = document.querySelector("div.add-mission button#mission-add-button");
-
-console.log(missionSubmitButton);
+addMissionButton.addEventListener("click", (event) => {
+  var task_title = addMissionInput.value;
+  console.log(task_title);
+});
