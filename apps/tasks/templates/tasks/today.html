@@ -1,7 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% load tasks_tags %}
+{% extends 'base.html' %}
+{% load static %}
+{% load tasks_tags %}
 {% block css_files %}
 {{block.super}}
-<link rel="stylesheet" href="{% static 'tasks/css/tasks.css' %}" />
+<link rel="stylesheet" href="{% static 'tasks/css/tasks.css' %}"/>
 {% endblock css_files %}
 {% block content %}
 <section id="today" class="bg-gray-100">
@@ -82,7 +84,7 @@
                 type="text"
                 id="mission-input"
                 class="h-10 bg-white text-sm w-full border-transparent focus:border-transparent focus:ring-0 placeholder-rose-600 focus:placeholder-gray-600"
-                max-length="255"
+                maxlength="255"
                 tabindex="0"
                 autocomplete="off"
                 placeholder="Görev ekle"
