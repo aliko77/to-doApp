@@ -1,17 +1,38 @@
 "use strict";
 
+// Değişkenler
 var addMissionInput = document.getElementById("mission-input");
 var addMissionButton = document.getElementById("mission-add-button");
+var auxDateButtons = document.querySelectorAll("a.aux-date-button");
+var removeDateButton = document.querySelector("a.removeDateButton");
+var auxDateSpan = document.querySelector(
+  '[data-dropdown-toggle="aux-date-dropdown"] .aux-value'
+);
 
-function CreateTaskPostRequest() {
-  console.log("Test");
+// Yeni görev oluşturma fonksiyonu
+function TaskCreateRequest() {
+  var csrfToken = $("[name=\"csrfmiddlewaretoken\"]").val();
+  var postData = {
+    title: addMissionInput.value,
+    csrfmiddlewaretoken: csrfToken
+  }
+  $.ajax({
+    type: "POST",
+    url: "/tasks/create/",
+    data: postData,
+    success: function (response) {
+      console.log(response);
+    }
+  });
 }
 
 addMissionInput.addEventListener("keyup", (event) => {
-  if(event.keyCode === 13 || event.keyCode === "Enter"){
-    CreateTaskPostRequest();
+  // keyup Enter tespiti ve TaskCreateRequest 'yönlendirmesi
+  if (event.key === "Enter") {
+    TaskCreateRequest();
     return;
   }
+  // Input value uzunluğu kontrolü ile submit button status değişikliği 
   const result = event.target.value;
   if (result.length > 0) {
     try {
@@ -28,12 +49,7 @@ addMissionInput.addEventListener("keyup", (event) => {
   }
 });
 
-var auxDateButtons = document.querySelectorAll("a#aux-date-button");
-var removeDateButton = document.querySelector("a.removeDateButton");
-var auxDateSpan = document.querySelector(
-  '[data-dropdown-toggle="aux-date-dropdown"] .aux-value'
-);
-
+// Görev son tarih için dynamic span text
 auxDateButtons.forEach((element) => {
   element.addEventListener("click", (event) => {
     var eValue = element.dataset.value;
@@ -43,10 +59,12 @@ auxDateButtons.forEach((element) => {
   });
 });
 
+// Kaldır, görev son tarih
 removeDateButton.addEventListener("click", (event) => {
   auxDateSpan.classList.add("hidden");
 });
 
+// Click event, submit create button
 addMissionButton.addEventListener("click", (event) => {
-  CreateTaskPostRequest();
+  TaskCreateRequest();
 });

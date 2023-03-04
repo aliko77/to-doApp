@@ -134,7 +134,7 @@ TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = []
 
-# NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"

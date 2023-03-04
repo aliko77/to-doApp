@@ -19,7 +19,7 @@ class UserTasks(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "Görev: " + self.title
+        return "Görev: " + self.title + ' | ' + self.author.username + ' | ' + str(self.id)
 
     class Meta:
         ordering = ["created_at"]
