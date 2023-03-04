@@ -3,7 +3,15 @@
 var addMissionInput = document.getElementById("mission-input");
 var addMissionButton = document.getElementById("mission-add-button");
 
+function CreateTaskPostRequest() {
+  console.log("Test");
+}
+
 addMissionInput.addEventListener("keyup", (event) => {
+  if(event.keyCode === 13 || event.keyCode === "Enter"){
+    CreateTaskPostRequest();
+    return;
+  }
   const result = event.target.value;
   if (result.length > 0) {
     try {
@@ -40,6 +48,5 @@ removeDateButton.addEventListener("click", (event) => {
 });
 
 addMissionButton.addEventListener("click", (event) => {
-  var task_title = addMissionInput.value;
-  console.log(task_title);
+  CreateTaskPostRequest();
 });
