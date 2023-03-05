@@ -8,8 +8,8 @@ class UserTasks(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=255)
-    description = models.TextField()
-    state = models.CharField(max_length=32)
+    description = models.TextField(default="")
+    state = models.CharField(max_length=32, default="active")
     expiration_date = models.DateField(null=True)
     is_important = models.BooleanField(default=False)
     step_id = models.BigIntegerField(default=0)
@@ -18,10 +18,10 @@ class UserTasks(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return "Görev: " + self.title + ' | ' + self.author.username + ' | ' + str(self.id)
-
     class Meta:
         ordering = ["created_at"]
         verbose_name = "Hedef"
         verbose_name_plural = "Hedefler"
+
+    def __str__(self):
+        return "Görev: " + self.title + ' | ' + self.author.username + ' | ' + str(self.id)

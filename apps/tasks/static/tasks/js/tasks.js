@@ -11,14 +11,17 @@ var auxDateSpan = document.querySelector(
 
 // Yeni görev oluşturma fonksiyonu
 function TaskCreateRequest() {
+  var exp_date = auxDateSpan.getAttribute("data-value");
   var csrfToken = $("[name=\"csrfmiddlewaretoken\"]").val();
   var postData = {
     title: addMissionInput.value,
+    expiration_date: exp_date,
     csrfmiddlewaretoken: csrfToken
   }
+  const url = "/tasks/create/"
   $.ajax({
     type: "POST",
-    url: "/tasks/create/",
+    url: url,
     data: postData,
     success: function (response) {
       console.log(response);
@@ -54,6 +57,7 @@ auxDateButtons.forEach((element) => {
   element.addEventListener("click", (event) => {
     var eValue = element.dataset.value;
     auxDateSpan.textContent = "Son tarih: " + eValue;
+    auxDateSpan.setAttribute("data-value", eValue);
     auxDateSpan.classList.remove("hidden");
     removeDateButton.classList.replace("hidden", "flex");
   });
@@ -61,6 +65,7 @@ auxDateButtons.forEach((element) => {
 
 // Kaldır, görev son tarih
 removeDateButton.addEventListener("click", (event) => {
+  auxDateSpan.removeAttribute("data-value");
   auxDateSpan.classList.add("hidden");
 });
 
