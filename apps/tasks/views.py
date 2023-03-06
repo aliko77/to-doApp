@@ -36,15 +36,14 @@ class Today(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["user_tasks"] = self.model.objects.filter(
-            author=self.request.user)
-
+            author=self.request.user).order_by("-id")
         return context
 
 
 class TaskCreate(LoginRequiredMixin, View):
     def post(self, request):
         if is_ajax(request):
-            if not request.POST.get("title") or not request.POST.get("expiration_date"):
+            if request.POST.get("title") == None or request.POST.get("expiration_date") == None:
                 return HttpResponseBadRequest("Eksik data.")
 
             try:
