@@ -36,7 +36,9 @@ class Today(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["user_tasks"] = self.model.objects.filter(
-            author=self.request.user).order_by("-id")
+            author=self.request.user,
+            created_at__lte=datetime.today()
+        ).order_by("-id")
         return context
 
 

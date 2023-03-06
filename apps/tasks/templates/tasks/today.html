@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load tasks_tags %}
 {% block css_files %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static "tasks/css/tasks.css" %}"/>
@@ -51,161 +50,13 @@
         </div>
         <div class="flex flex-1 relative">
           <div class="flex flex-col flex-[1] overflow-hidden">
-            <div class="add-mission overflow-hidden flex flex-col rounded bg-white">
-              <div class="mission-input-div px-4 py-2 overflow-hidden relative flex-shrink-0 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke-width="1.5"
-                     stroke="currentColor"
-                     class="w-6 h-6 stroke-rose-600">
-                  <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <input type="text"
-                       id="mission-input"
-                       class="h-10 bg-white text-sm w-full border-transparent focus:border-transparent focus:ring-0 placeholder-rose-600 focus:placeholder-gray-600"
-                       maxlength="255"
-                       tabindex="0"
-                       autocomplete="off"
-                       placeholder="Görev ekle"/>
-              </div>
-              <div class="aux_div px-4 py-2 overflow-hidden relative flex-shrink-0 flex items-center bg-slate-200">
-                <div class="flex flex-row flex-nowrap overflow-x-auto space-x-4 p-1">
-                  <div role="button"
-                       title="Son tarih ekle"
-                       data-dropdown-toggle="aux-date-dropdown"
-                       class="flex flex-1 items-center text-xs bg-white py-0.5 px-2 rounded space-x-1">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         fill="none"
-                         viewBox="0 0 24 24"
-                         stroke-width="1.5"
-                         stroke="currentColor"
-                         class="w-5 h-5 stroke-stone-700">
-                      <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
-                      />
-                    </svg>
-                    <span class="aux-value hidden"></span>
-                  </div>
-                </div>
-                <div class="relative ml-auto">
-                  {% csrf_token %}
-                  <button id="mission-add-button"
-                          aria-label="Ekle"
-                          tabindex="-1"
-                          class="border bg-white px-2 py-1 text-sm text-rose-600"
-                          disabled>
-                    Ekle
-                  </button>
-                </div>
-              </div>
-            </div>
+            {% include "partials/add_mission.html" %}
             {% include "partials/task_list.html" %}
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Dropdown menus -->
-  <div id="aux-date-dropdown"
-       class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-52 dark:bg-gray-700">
-    <div class="py-2 text-center text-sm">
-      <p>Son Tarih</p>
-    </div>
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-        aria-labelledby="dropdownAuxDate">
-      <li>
-        <a role="button"
-           data-value="{% addDays 0 "d-m-Y" %}"
-           class="aux-date-button flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-          <svg xmlns="http://www.w3.org/2000/svg"
-               fill="none"
-               viewBox="0 0 24 24"
-               stroke-width="1.5"
-               stroke="currentColor"
-               class="w-4 h-4">
-            <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-            />
-          </svg>
-          <div class="flex flex-1 justify-between">
-            <span>Bugün</span>
-            <span class="text-sm text-gray-500">{% now "D" %}</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a role="button"
-           data-value="{% addDays 1 "d-m-Y" %}"
-           class="aux-date-button flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-          <svg xmlns="http://www.w3.org/2000/svg"
-               fill="none"
-               viewBox="0 0 24 24"
-               stroke-width="1.5"
-               stroke="currentColor"
-               class="w-4 h-4">
-            <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-            />
-          </svg>
-          <div class="flex flex-1 justify-between">
-            <span>Yarın</span>
-            <span class="text-sm text-gray-500">{% addDays 1 "D" %}</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a role="button"
-           data-value="{% addDays 7 "d-m-Y" %}"
-           class="aux-date-button flex flex-1 items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-          <svg xmlns="http://www.w3.org/2000/svg"
-               fill="none"
-               viewBox="0 0 24 24"
-               stroke-width="1.5"
-               stroke="currentColor"
-               class="w-4 h-4">
-            <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-            />
-          </svg>
-          <div class="flex flex-1 justify-between">
-            <span>Gelecek hafta</span>
-            <span class="text-sm text-gray-500">{% addDays 7 "D" %}</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-    <div class="py-2 text-sm">
-      <a role="button"
-         class="hidden removeDateButton flex-1 text-sm items-center space-x-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             fill="none"
-             viewBox="0 0 24 24"
-             stroke-width="1.5"
-             stroke="currentColor"
-             class="w-4 h-4">
-          <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-          />
-        </svg>
-        <span>Tarihi kaldır</span>
-      </a>
-    </div>
-  </div>
 {% endblock content %}
 {% block ext_js_files %}
   <script src="{% static "tasks/js/tasks.js" %}"></script>
