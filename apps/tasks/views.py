@@ -3,7 +3,7 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseBadRequest, JsonResponse
 from .models import UserTasks
-import datetime
+from datetime import datetime
 
 # Create your views here.
 
@@ -13,6 +13,19 @@ def is_ajax(request):
     İstek, bir ajax isteği mi?
     """
     return request.headers.get("X-Requested-With") == "XMLHttpRequest"
+
+
+def strToDate(str):
+    """
+    string to date
+    @return:
+        date,
+        except ValueError return None
+    """
+    try:
+        return datetime.strptime(str, "%d-%m-%Y").date()
+    except ValueError:
+        return None
 
 
 class Today(LoginRequiredMixin, ListView):
@@ -31,20 +44,15 @@ class Today(LoginRequiredMixin, ListView):
 class TaskCreate(LoginRequiredMixin, View):
     def post(self, request):
         if is_ajax(request):
-            if not request.POST.get("title"):
-                return HttpResponseBadRequest("Eksik data. (title)")
-
-            try:
-                exp_date = datetime.datetime.strptime(
-                    request.POST.get("expiration_date"), "%d-%m-%Y").date()
-            except ValueError:
-                exp_date = None
+            if not request.POST.get("title") or not request.POST.get("expiration_date"):
+                return HttpResponseBadRequest("Eksik data.")
 
             try:
                 ut = UserTasks(
                     author=request.user,
                     title=request.POST.get("title"),
-                    expiration_date=exp_date
+                    expiration_date=strToDate(
+                        request.POST.get("expiration_date"))
                 )
                 ut.save()
                 return JsonResponse({"status": True}, status=201)
