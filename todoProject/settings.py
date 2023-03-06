@@ -134,6 +134,7 @@ TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = []
 
+#NPM Path for windows !
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 LOGIN_URL = "login"

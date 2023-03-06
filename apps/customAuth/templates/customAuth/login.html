@@ -1,108 +1,70 @@
-{% extends 'base.html' %} {% block content %}
-<section
-    id="login"
-    class="bg-gradient-to-b from-rose-500 to-white"
->
-    <div class="flex flex-col items-center justify-center px-6 py-8">
-        <div
-            class="flex items-center mb-6 text-2xl font-semibold text-white cursor-pointer"
-        >
-            <h1 class="text-2xl font-medium font-mono tracking-wider">
-                Too&middot;Doo
-            </h1>
-        </div>
-        {% if messages %}
-        <div
-            class="bg-white rounded text-teal-800 px-4 py-3 shadow-md m-3 w-full max-w-md"
-            role="alert"
-        >
-            <div class="flex items-center">
-                {% for message in messages %}
-                <div class="py-1">
-                    <svg
-                        class="fill-current h-6 w-6 text-teal-500 mr-4"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
-                        />
-                    </svg>
+{% extends "base.html" %}
+{% block content %}
+    <section id="login" class="bg-gradient-to-b from-rose-500 to-white">
+        <div class="flex flex-col items-center justify-center px-6 py-8">
+            <div class="flex items-center mb-6 text-2xl font-semibold text-white cursor-pointer">
+                <h1 class="text-2xl font-medium font-mono tracking-wider">Too Doo</h1>
+            </div>
+            {% if messages %}
+                <div class="bg-white rounded text-teal-800 px-4 py-3 shadow-md m-3 w-full max-w-md"
+                     role="alert">
+                    <div class="flex items-center">
+                        {% for message in messages %}
+                            <div class="py-1">
+                                <svg class="fill-current h-6 w-6 text-teal-500 mr-4"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20">
+                                    <path
+                                    d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                                    />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold">{{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                <div>
-                    <p class="font-semibold">{{ message }}</p>
-                </div>
-                {% endfor %}
+            {% endif %}
+            <div class="w-full max-w-md bg-white bg-opacity-80 rounded-lg shadow-lg p-1">
+                <form action="{% url "login" %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <div class="p-4 space-y-4">
+                        <h1 class="text-xl sm:text-2xl font-semibold tracking-tighter leading-tight text-gray-900">Hesabınıza giriş yapın</h1>
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">E-mail</label>
+                            <input type="email"
+                                   name="email"
+                                   id="email"
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rose-400 focus:border-rose-400 block w-full p-2.5"
+                                   placeholder="email"
+                                   required/>
+                        </div>
+                        <div>
+                            <label for="password" class="block mb-2 textsm font-medium text-gray-900">Şifre</label>
+                            <input type="password"
+                                   name="password"
+                                   id="password"
+                                   placeholder="..."
+                                   required
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-rose-400 focus:border-rose-400 block w-full p-2.5"/>
+                        </div>
+                        <div class="flex items-center justify-end">
+                            <a href="#" class="text-sm font-medium text-rose-600 hover:underline">Şifreni mi unuttun?</a>
+                            <button type="submit"
+                                    class="w-full text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Giriş Yap
+                            </button>
+                            <p class="text-sm text-rose-500">
+                                Bir hesabın yok mu?
+                                <a href="{% url "register" %}"
+                                   class="font-medium text-rose-600 hover:underline">Kayıt ol</a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        {% endif %}
-
-        <div
-            class="w-full max-w-md bg-white bg-opacity-80 rounded-lg shadow-lg p-1"
-        >
-            <form action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ next }}" />
-                <div class="p-4 space-y-4">
-                    <h1
-                        class="text-xl sm:text-2xl font-semibold tracking-tighter leading-tight text-gray-900"
-                    >
-                        Hesabınıza giriş yapın
-                    </h1>
-                    <div>
-                        <label
-                            for="email"
-                            class="block mb-2 text-sm font-medium text-gray-900"
-                            >E-mail</label
-                        >
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rose-400 focus:border-rose-400 block w-full p-2.5"
-                            placeholder="email"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label
-                            for="password"
-                            class="block mb-2 textsm font-medium text-gray-900"
-                            >Şifre</label
-                        >
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="..."
-                            required
-                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-rose-400 focus:border-rose-400 block w-full p-2.5"
-                        />
-                    </div>
-                    <div class="flex items-center justify-end">
-                        <a
-                            href="#"
-                            class="text-sm font-medium text-rose-600 hover:underline"
-                            >Şifreni mi unuttun?</a
-                        >
-                    </div>
-                    <button
-                        type="submit"
-                        class="w-full text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    >
-                        Giriş Yap
-                    </button>
-                    <p class="text-sm text-rose-500">
-                        Bir hesabın yok mu?
-                        <a
-                            href="{% url 'register' %}"
-                            class="font-medium text-rose-600 hover:underline"
-                            >Kayıt ol</a
-                        >
-                    </p>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
+    </section>
 {% endblock content %}

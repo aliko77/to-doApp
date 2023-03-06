@@ -1,50 +1,41 @@
-<header
-    class="sticky w-full top-0 left-0 right-0 bottom-auto z-[990] bg-rose-500 text-white shadow-md p-2.5"
->
+<header class="sticky w-full top-0 left-0 right-0 bottom-auto z-[990] bg-rose-500 text-white shadow-md p-2.5">
     <div class="flex items-center align-middle justify-between">
         <div>
-            <a href="{% url 'home' %}">
-                <span
-                    class="text-xl font-medium font-mono tracking-wider"
-                    >Too&middot;Doo</span
-                >
+            <a href="{% url "home" %}">
+                <span class="text-xl font-medium font-mono tracking-wider">Too Doo</span>
             </a>
         </div>
         <div class="flex justify-around items-center space-x-4">
             {% if user.is_authenticated %}
-            <div>
-                {% comment %} Logout Button {% endcomment %}
-                <a href="{% url 'logout' %}" title="Çıkış yap">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                    >
-                        <path
+                <div>
+                    {% comment %} Logout Button {% endcomment %}
+                    <a href="{% url "logout" %}" title="Çıkış yap">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke-width="1.5"
+                             stroke="currentColor"
+                             class="w-6 h-6">
+                            <path
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-                        />
-                    </svg>
-                </a>
-            </div>
+                            />
+                        </svg>
+                    </a>
+                </div>
             {% endif %}
             <div class="cursor-pointer">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="1.5"
+                     stroke="currentColor"
+                     class="w-6 h-6">
                     <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                     />
                 </svg>
             </div>

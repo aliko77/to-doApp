@@ -1,41 +1,42 @@
-{% load static %} {% load static tailwind_tags %}
+{% load static %}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="{% static 'main/apple-touch-icon.png' %}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="{% static 'main/favicon/favicon-32x32.png' %}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="{% static 'main/favicon/favicon-16x16.png' %}"
-    />
-    <link rel="manifest" href="{% static 'main/favicon/site.webmanifest' %}" />
-    {% block css_files %}
-      <link rel="stylesheet" href="{% static 'main/css/main.css' %}" />
-      {% tailwind_css %}
-    {% endblock css_files %}
-    <title>To-Do App</title>
-  </head>
-  <body>
-    {% include 'header.html' %}
-    <main id="main">{% block content %} {% endblock content %}</main>
-  </body>
-  <footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    {% block ext_js_files %}{% endblock ext_js_files %}
-  </footer>
+    <head>
+        <meta name="description" content="To-Do App" />
+        <meta name="keywords" content="to do app, microsoft to do, tasks" />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="apple-touch-icon"
+              sizes="180x180"
+              href="{% static "main/apple-touch-icon.png" %}"/>
+        <link rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="{% static "main/favicon/favicon-32x32.png" %}"/>
+        <link rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="{% static "main/favicon/favicon-16x16.png" %}"/>
+        <link rel="manifest" href="{% static "main/favicon/site.webmanifest" %}" />
+        {% block css_files %}
+            <link rel="stylesheet" href="{% static "main/css/main.css" %}" />
+            {% tailwind_css %}
+        {% endblock css_files %}
+        <title>To-Do App</title>
+    </head>
+    <body>
+        {% include "header.html" %}
+        <main id="main">
+            {% block content %}
+            {% endblock content %}
+        </main>
+    </body>
+    <footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        {% block ext_js_files %}
+        {% endblock ext_js_files %}
+    </footer>
 </html>
